@@ -82,7 +82,6 @@ public:
     MatrixXd H_laser_;
     MatrixXd R_laser_;
     VectorXd x_aug_;
-    long previous_timestamp_;
 
     MatrixXd R_radar_;
     

@@ -12,6 +12,10 @@ using std::vector;
  * Initializes Unscented Kalman filter
  */
 UKF::UKF() {
+    
+    
+    
+ 
 
     is_initialized_ = false;
 
@@ -34,19 +38,19 @@ UKF::UKF() {
     std_yawdd_ = 1.2; // 1.2;
 
     // Laser measurement noise standard deviation position1 in m
-    std_laspx_ = 0.0225;
+    std_laspx_  = 0.15;
 
     // Laser measurement noise standard deviation position2 in m
-    std_laspy_ = 0.0225;
+    std_laspy_  = 0.15;
 
     // Radar measurement noise standard deviation radius in m
-    std_radr_ = 0.3; //0.9;
+    std_radr_   = 0.3;//0.9;
 
     // Radar measurement noise standard deviation angle in rad
-    std_radphi_ = 0.0175; // 0.005;
+    std_radphi_ = 0.03; // 0.005;
 
     // Radar measurement noise standard deviation radius change in m/s
-    std_radrd_ = 0.1; // 0.5;
+    std_radrd_  = 0.3; // 0.5;
 
     /**
     TODO:
@@ -71,7 +75,7 @@ UKF::UKF() {
     P_ = MatrixXd(5, 5);
     P_ << 1, 0, 0, 0, 0,
             0, 1, 0, 0, 0,
-            0, 0, 70, 0, 0,
+            0, 0, 100, 0, 0,
             0, 0, 0, 10, 0,
             0, 0, 0, 0, 1;
 
@@ -146,7 +150,6 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
         x_ << px, py, 0, 0, 0;
         x_aug_ = VectorXd(7);
 
-//        previous_timestamp_ = meas_package.timestamp_;
         is_initialized_ = true;
 
         std::cout << "initialization done" << std::endl;
